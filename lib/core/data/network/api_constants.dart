@@ -1,7 +1,8 @@
 import 'package:filmhub_app/tv_shows/domain/usecases/get_season_details_usecase.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ApiConstants {
-  static const String apiKey = '2e55f955d8def50803d9913a14ccdeda'; // i know this is bad practice 
+  static final String apiKey = dotenv.env['API_KEY'] ?? ''; 
   static const String baseUrl = 'https://api.themoviedb.org/3';
 
   static const String baseBackdropUrl = 'https://image.tmdb.org/t/p/w1280';
@@ -24,13 +25,13 @@ class ApiConstants {
       'https://popcornsg.s3.amazonaws.com/gallery/1577405144-six-year.png';
 
   // movies paths
-  static const String nowPlayingMoviesPath =
+  static final String nowPlayingMoviesPath =
       '$baseUrl/movie/now_playing?api_key=$apiKey';
 
-  static const String popularMoviesPath =
+  static final String popularMoviesPath =
       '$baseUrl/movie/popular?api_key=$apiKey';
 
-  static const String topRatedMoviesPath =
+  static final String topRatedMoviesPath =
       '$baseUrl/movie/top_rated?api_key=$apiKey';
 
   static String getMovieDetailsPath(int movieId) {
@@ -46,13 +47,13 @@ class ApiConstants {
   }
 
   // tv shows paths
-  static const String onAirTvShowsPath =
+  static final String onAirTvShowsPath =
       '$baseUrl/tv/on_the_air?api_key=$apiKey&with_original_language=en';
 
-  static const String popularTvShowsPath =
+  static final String popularTvShowsPath =
       '$baseUrl/tv/popular?api_key=$apiKey&with_original_language=en';
 
-  static const String topRatedTvShowsPath =
+  static final String topRatedTvShowsPath =
       '$baseUrl/tv/top_rated?api_key=$apiKey&with_original_language=en';
 
   static String getTvShowDetailsPath(int tvShowId) {

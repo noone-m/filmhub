@@ -7,8 +7,15 @@ import 'package:filmhub_app/core/services/service_locator.dart';
 import 'package:filmhub_app/core/resources/app_strings.dart';
 import 'package:filmhub_app/core/resources/app_theme.dart';
 import 'package:filmhub_app/watchlist/presentation/controllers/watchlist_bloc/watchlist_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
+  try {
+  await  dotenv.load();
+} catch (e, stackTrace) {
+  print("Error: $e");
+  print("Stack trace: $stackTrace");
+}
   await Hive.initFlutter();
   Hive.registerAdapter(MediaAdapter());
   await Hive.openBox('items');
