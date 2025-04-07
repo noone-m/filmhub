@@ -28,7 +28,7 @@ class SliderCard extends StatelessWidget {
       child: SafeArea(
         child: Stack(
           children: [
-            SliderCardImage(imageUrl: media.backdropUrl),
+            SliderCardImage(imageUrl: media.backdropUrl,fitType: BoxFit.fill,),
             Padding(
               padding: const EdgeInsets.only(
                 right: AppPadding.p16,

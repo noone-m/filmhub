@@ -12,9 +12,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 void main() async {
   try {
   await  dotenv.load();
-} catch (e, stackTrace) {
-  print("Error: $e");
-  print("Stack trace: $stackTrace");
+} catch (e) {
+  
 }
   await Hive.initFlutter();
   Hive.registerAdapter(MediaAdapter());

@@ -4,11 +4,13 @@ import 'package:filmhub_app/core/resources/app_colors.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ImageWithShimmer extends StatelessWidget {
+  final BoxFit fitType;
   const ImageWithShimmer({
     super.key,
     required this.imageUrl,
     required this.width,
     required this.height,
+    required this.fitType
   });
 
   final String imageUrl;
@@ -21,7 +23,7 @@ class ImageWithShimmer extends StatelessWidget {
       imageUrl: imageUrl,
       height: height,
       width: width,
-      fit: BoxFit.fill,
+      fit: fitType,
       placeholder: (_, __) => Shimmer.fromColors(
         baseColor: Colors.grey[850]!,
         highlightColor: Colors.grey[800]!,
@@ -34,6 +36,7 @@ class ImageWithShimmer extends StatelessWidget {
         Icons.error,
         color: AppColors.error,
       ),
+      colorBlendMode: BlendMode.dstIn,
     );
   }
 }

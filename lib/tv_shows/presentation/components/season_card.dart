@@ -43,6 +43,7 @@ class SeasonCard extends StatelessWidget {
                   imageUrl: season.posterUrl,
                   width: AppSize.s110,
                   height: double.infinity,
+                  fitType: BoxFit.fill,
                 ),
               ),
             ),

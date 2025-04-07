@@ -28,6 +28,7 @@ class EpisodeCard extends StatelessWidget {
                 imageUrl: episode.stillPath,
                 width: AppSize.s150,
                 height: double.infinity,
+                fitType: BoxFit.fill,
               ),
             ),
           ),

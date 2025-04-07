@@ -30,7 +30,7 @@ class DetailsCard extends StatelessWidget {
     return SafeArea(
       child: Stack(
         children: [
-          SliderCardImage(imageUrl: mediaDetails.backdropUrl),
+          SliderCardImage(imageUrl: mediaDetails.backdropUrl,fitType: BoxFit.fill,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16),
             child: SizedBox(

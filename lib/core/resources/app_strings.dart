@@ -34,4 +34,7 @@ class AppStrings {
   static const String errorMessage = 'Something went wrong';
   static const String tryAgain = 'try again';
   static const String noResults = 'No results';
+  static const String biography = 'Biography';
+  static const String now = 'now';
+  static const String department = 'Department';
 }

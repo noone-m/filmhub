@@ -38,6 +38,7 @@ class VerticalListViewCard extends StatelessWidget {
                   imageUrl: media.posterUrl,
                   width: AppSize.s110,
                   height: double.infinity,
+                  fitType: BoxFit.fill,
                 ),
               ),
             ),

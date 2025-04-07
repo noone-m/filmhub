@@ -1,3 +1,4 @@
+import 'package:filmhub_app/persons/presentation/views/person_details_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:filmhub_app/core/presentation/pages/main_page.dart';
@@ -24,6 +25,7 @@ const String popularTVShowsPath = 'popularTVShows';
 const String topRatedTVShowsPath = 'topRatedTVShows';
 const String searchPath = '/search';
 const String watchlistPath = '/watchlist';
+const String personDetailsPath = '/personDetails/:personId';
 
 class AppRouter {
   GoRouter router = GoRouter(
@@ -110,8 +112,16 @@ class AppRouter {
               child: WatchlistView(),
             ),
           ),
+          GoRoute(
+            name: AppRoutes.personDetailsRoute,
+            path: personDetailsPath,
+            pageBuilder: (context, state) => NoTransitionPage(
+              child: PersonDetailsView(
+                  personId: int.parse(state.pathParameters['personId']!)),
+            ),
+          )
         ],
-      )
+      ),
     ],
   );
 }

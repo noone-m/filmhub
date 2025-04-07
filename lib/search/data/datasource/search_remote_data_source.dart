@@ -14,7 +14,7 @@ class SearchRemoteDataSourceImpl extends SearchRemoteDataSource {
     final response = await Dio().get(ApiConstants.getSearchPath(title));
     if (response.statusCode == 200) {
       return List<SearchResultItemModel>.from((response.data['results'] as List)
-          .where((e) => e['media_type'] != 'person')
+          // .where((e) => e['media_type'] != 'person')
           .map((e) => SearchResultItemModel.fromJson(e)));
     } else {
       throw ServerException(

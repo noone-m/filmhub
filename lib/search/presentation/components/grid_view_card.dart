@@ -34,6 +34,7 @@ class GridViewCard extends StatelessWidget {
                 imageUrl: item.posterUrl,
                 width: double.infinity,
                 height: AppSize.s150,
+                fitType: BoxFit.fill,
               ),
             ),
           ),

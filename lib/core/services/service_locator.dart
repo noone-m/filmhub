@@ -1,3 +1,8 @@
+import 'package:filmhub_app/persons/data/datasource/persons_remote_datasource.dart';
+import 'package:filmhub_app/persons/data/repository/persons_repository_impl.dart';
+import 'package:filmhub_app/persons/domain/repository/persons_repository.dart';
+import 'package:filmhub_app/persons/domain/usecases/get_person_details_usecase.dart';
+import 'package:filmhub_app/persons/presentation/controllers/person_details_bloc/person_details_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:filmhub_app/movies/data/datasource/movies_remote_data_source.dart';
 import 'package:filmhub_app/movies/data/repository/movies_repository_impl.dart';
@@ -50,17 +55,20 @@ class ServiceLocator {
         () => SearchRemoteDataSourceImpl());
     sl.registerLazySingleton<WatchlistLocalDataSource>(
         () => WatchlistLocalDataSourceImpl());
+    sl.registerLazySingleton<PersonsRemoteDatasource>(
+        () => PersonsRemoteDatasourceImpl());
 
     // Repository
     sl.registerLazySingleton<MoviesRespository>(
-        () => MoviesRepositoryImpl(sl()));
+        () => MoviesRepositoryImpl(sl())); // sl() will return MoviesRemoteDataSourceImpl instance here get_it knows what to return depending on what is expected
     sl.registerLazySingleton<TVShowsRepository>(
         () => TVShowsRepositoryImpl(sl()));
     sl.registerLazySingleton<SearchRepository>(
         () => SearchRepositoryImpl(sl()));
     sl.registerLazySingleton<WatchlistRepository>(
         () => WatchListRepositoryImpl(sl()));
-
+    sl.registerLazySingleton<PersonsRepository>(
+        () => PersonsRepositoryImpl(sl()));
     // Use Cases
     sl.registerLazySingleton(() => GetMoviesDetailsUseCase(sl()));
     sl.registerLazySingleton(() => GetMoviesUseCase(sl()));
@@ -76,6 +84,7 @@ class ServiceLocator {
     sl.registerLazySingleton(() => AddWatchlistItemUseCase(sl()));
     sl.registerLazySingleton(() => RemoveWatchlistItemUseCase(sl()));
     sl.registerLazySingleton(() => CheckIfItemAddedUseCase(sl()));
+    sl.registerLazySingleton(() => GetPersonDetailsUsecase(sl()));
 
     // Bloc
     sl.registerFactory(() => MoviesBloc(sl()));
@@ -88,5 +97,6 @@ class ServiceLocator {
     sl.registerFactory(() => TopRatedTVShowsBloc(sl()));
     sl.registerFactory(() => SearchBloc(sl()));
     sl.registerFactory(() => WatchlistBloc(sl(), sl(), sl(), sl()));
+    sl.registerFactory(() => PersonDetailsBloc(sl(),));
   }
 }

@@ -12,63 +12,35 @@ part 'popular_movies_state.dart';
 
 class PopularMoviesBloc extends Bloc<PopularMoviesEvent, PopularMoviesState> {
   final GetAllPopularMoviesUseCase _allPopularMoviesUseCase;
-
+  int page = 1;
+  
   PopularMoviesBloc(this._allPopularMoviesUseCase)
       : super(const PopularMoviesState()) {
     on<GetPopularMoviesEvent>(_getAllPopularMovies);
     on<FetchMorePopularMoviesEvent>(_fetchMoreMovies);
   }
 
-  int page = 1;
-
   Future<void> _getAllPopularMovies(
       GetPopularMoviesEvent event, Emitter<PopularMoviesState> emit) async {
-    if (state.status == GetAllRequestStatus.loading) {
-      await _getMovies(emit);
-    } else if (state.status == GetAllRequestStatus.loaded) {
-      await _getMovies(emit);
-    } else {
-      emit(
-        state.copyWith(
-          status: GetAllRequestStatus.loading,
-        ),
-      );
-      await _getMovies(emit);
-    }
-  }
-
-  Future<void> _getMovies(Emitter<PopularMoviesState> emit) async {
-    final result = await _allPopularMoviesUseCase(page);
-    result.fold(
-      (l) => emit(
-        state.copyWith(
-          status: GetAllRequestStatus.error,
-        ),
-      ),
-      (r) {
-        page++;
-        emit(
-          state.copyWith(
-            status: GetAllRequestStatus.loaded,
-            movies: state.movies + r,
-          ),
-        );
-      },
-    );
+    await _handleFetch(emit, GetAllRequestStatus.error);
   }
 
   Future<void> _fetchMoreMovies(FetchMorePopularMoviesEvent event,
       Emitter<PopularMoviesState> emit) async {
+    await _handleFetch(emit, GetAllRequestStatus.fetchMoreError);
+  }
+
+  Future<void> _handleFetch(
+    Emitter<PopularMoviesState> emit,
+    GetAllRequestStatus errorStatus,
+  ) async {
     final result = await _allPopularMoviesUseCase(page);
+    // print("reslut is $result, type of result is ${result.runtimeType}");  type of result is Right<Failure, List<Media>> or Left
     result.fold(
-      (l) => emit(
-        state.copyWith(
-          status: GetAllRequestStatus.fetchMoreError,
-        ),
-      ),
+      (l) => emit(state.copyWith(status: errorStatus)),
       (r) {
         page++;
-        return emit(
+        emit(
           state.copyWith(
             status: GetAllRequestStatus.loaded,
             movies: state.movies + r,

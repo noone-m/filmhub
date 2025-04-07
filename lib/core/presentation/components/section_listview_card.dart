@@ -32,6 +32,7 @@ class SectionListViewCard extends StatelessWidget {
                 imageUrl: media.posterUrl,
                 width: double.infinity,
                 height: AppSize.s175,
+                fitType: BoxFit.fill,
               ),
             ),
           ),

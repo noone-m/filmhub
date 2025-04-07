@@ -14,9 +14,9 @@ import 'package:filmhub_app/movies/presentation/controllers/popular_movies_bloc/
 
 class PopularMoviesView extends StatelessWidget {
   const PopularMoviesView({super.key});
-
+  
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext   context) {
     return BlocProvider(
       create: (context) =>
           sl<PopularMoviesBloc>()..add(GetPopularMoviesEvent()),

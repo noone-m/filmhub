@@ -6,9 +6,11 @@ class SliderCardImage extends StatelessWidget {
   const SliderCardImage({
     super.key,
     required this.imageUrl,
+    required this.fitType
   });
 
   final String imageUrl;
+  final BoxFit fitType;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class SliderCardImage extends StatelessWidget {
         height: size.height *0.6,
         width: double.infinity,
         imageUrl: imageUrl,
+        fitType: fitType,
       ),
     );
   }

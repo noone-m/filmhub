@@ -76,4 +76,21 @@ class ApiConstants {
   static String getSearchPath(String title) {
     return '$baseUrl/search/multi?api_key=$apiKey&query=$title';
   }
+
+  // person paths
+  static String getPersonMoviesPath(int personId){
+    return '$baseUrl/person/$personId/movie_credits?api_key=$apiKey';
+  }
+
+  static String getPersonTVshowsPath(int personId){
+    return '$baseUrl/person/$personId/tv_credits?api_key=$apiKey';
+  }
+
+  static String getPersonDetailsPath(int personId){
+    return '$baseUrl/person/$personId?api_key=$apiKey';
+  }
+
+  static String getPersonExternalIds(int personId){
+    return '$baseUrl/person/$personId/external_ids?api_key=$apiKey';
+  }
 }
