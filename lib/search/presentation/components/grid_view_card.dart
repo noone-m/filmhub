@@ -20,18 +20,16 @@ class GridViewCard extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            item.isMovie
-                ? context.pushNamed(AppRoutes.movieDetailsRoute,
-                    pathParameters: {'movieId': item.tmdbID.toString()})
-                : context.pushNamed(AppRoutes.tvShowDetailsRoute,
-                    pathParameters: {'tvShowId': item.tmdbID.toString()});
+            _getItemDetails(item,context);
           },
           child: AspectRatio(
             aspectRatio: 2 / 3,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(AppSize.s8),
               child: ImageWithShimmer(
-                imageUrl: item.posterUrl,
+                imageUrl: item is MediaSearchResult
+                    ? (item as MediaSearchResult).media.posterUrl
+                    : (item as PersonSearchResult).person.profilePath!,
                 width: double.infinity,
                 height: AppSize.s150,
                 fitType: BoxFit.fill,
@@ -41,7 +39,9 @@ class GridViewCard extends StatelessWidget {
         ),
         Expanded(
           child: Text(
-            item.title,
+            item is MediaSearchResult
+                ? (item as MediaSearchResult).media.title
+                : (item as PersonSearchResult).person.name,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: textTheme.bodyMedium,
@@ -51,3 +51,18 @@ class GridViewCard extends StatelessWidget {
     );
   }
 }
+
+void _getItemDetails(SearchResultItem item, BuildContext context) {
+  if (item is MovieSearchResult) {
+    context.pushNamed(AppRoutes.movieDetailsRoute,
+        pathParameters: {'movieId': item.media.tmdbID.toString()});
+  } else if (item is TvShowSearchResult) {
+    context.pushNamed(AppRoutes.tvShowDetailsRoute, pathParameters: {
+      'tvShowId': item.media.tmdbID.toString()
+    });
+  } else if (item is PersonSearchResult) {
+    context.pushNamed(AppRoutes.personDetailsRoute, pathParameters: {
+      'personId': item.person.id.toString()
+    });
+  }
+} 
