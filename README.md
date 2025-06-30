@@ -1,10 +1,39 @@
-# filmhub_app
+# 🎬 FilmHub
 
-A new Flutter project.
+FilmHub is a movie and TV show discovery app built with Flutter using clean architecture principles.The application also utilize a responsive design.
 
-## Getting Started
+## 🚀 Features
 
-This project is a starting point for a Flutter application.
+- Browse movies and TV shows
+- Explore celebrities.
+- Search functionality
+- Add to watchlist
+- Organized with Clean Architecture (Presentation, Domain, Data layers)
+
+## 🖼️ Preview
+
+### phone preview
+![App Screenshot](preview/filmhub1.png)
+![App Screenshot](preview/filmhub2.png)
+### big screens preview
+![App Screenshot](preview/filmhub3.png)
+---
+![App Screenshot](preview/filmhub4.png)
+
+## 🛠️ Built With
+
+- Flutter
+- Dart
+- TMDb API (or any other API you're using)
+- Clean Architecture
+
+## 📦 Installation
+
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/noone-m/filmhub.git
+   cd filmhub
+
 
 A few resources to get you started if this is your first Flutter project:
 
